@@ -19,12 +19,13 @@ const Favourites = () => {
   const favourites = useSelector((s)=>s.favourites)
     return (
       <Container>
-        <Row>
+        <Row className="mt-5">
+          <h4>FAVOURITES</h4>
           <Col xs={12}>
             <ListGroup>
               {favourites.elements.map((f) => (
                 <ListGroupItem>
-                  <StarFill onClick={() => dispatch(removeFromFav(f))} />
+                  <StarFill className="mx-2" onClick={() => dispatch(removeFromFav(f))} />
                   <span>{f}</span>
                 </ListGroupItem>
               ))}
