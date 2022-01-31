@@ -3,7 +3,7 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import JobResult from "./JobResult";
 import uniqid from "uniqid";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+
 import { fetchJobs } from "../store/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";

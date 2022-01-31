@@ -5,7 +5,8 @@ import thunk from "redux-thunk";
 import favouritesReducer from "./reducers/favourites";
 import jobsReducer from "./reducers/jobs";
 import storage from 'redux-persist/lib/storage'
-
+import { encryptTransform } from 'redux-persist-transform-encrypt';
+ 
 export const initialState = {
   favourites: {
     elements: [],
@@ -26,6 +27,14 @@ const mainReducer = combineReducers({
 const persistConfig = {
   key:'root',
   storage,
+  transforms: [
+    encryptTransform({
+      secretKey: process.env.REACT_APP_SUPER_SECRET_KEY,
+      onError: function (error) {
+        console.log(error)
+      },
+    }),
+  ],
 }
 
 const persistedReducer = persistReducer(persistConfig, mainReducer);
