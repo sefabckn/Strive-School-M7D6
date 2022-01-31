@@ -1,28 +1,24 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import './App.css'
-import CartIndicator from './components/CartIndicator'
-import BookStore from './components/BookStore'
-import Cart from './components/Cart'
-import { Col, Container, Row } from 'react-bootstrap'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import MainSearch from "./components/MainSearch";
+import CompanySearchResults from "./components/CompanySearchResults";
+import Favourites from "./components/Favourites";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import store from "./store";
+import { Provider } from "react-redux";
 
-const App = () => (
-  <BrowserRouter>
-    <Container>
-      <Row>
-        <Col sm={12} className="text-center background-div">
-          <Link to="/">
-            <h1>Strivazon Book Store</h1>
-          </Link>
-        </Col>
-        <CartIndicator />
-      </Row>
-      <hr />
-      <Routes>
-        <Route path="/" element={<BookStore />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-    </Container>
-  </BrowserRouter>
-)
+function App() {
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainSearch />} />
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/:companyName" element={<CompanySearchResults />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  );
+}
 
-export default App
+export default App;
